@@ -16,7 +16,7 @@ public class ExamPractice {
     public ExamPractice() {
         Simulator.header("Ethan Alexander exam practice executing...");
         new MatrixProblem();
-//        new OnlineOrders();
+        new OnlineOrders();
         
         mystery(4);
         
