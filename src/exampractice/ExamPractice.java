@@ -24,7 +24,8 @@ public class ExamPractice {
     }
     
     public void mystery(int n){
-        if(n>0 && (n % 2 == 0)){
+        if(n > 0 && (n % 2 == 0)){
+            System.out.println(n);
             mystery(n-2);
         }
         System.out.println(n);

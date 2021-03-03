@@ -1,16 +1,13 @@
-
 package testing.cs42sib.collections;
-
 
 import java.io.Serializable;
 
- 
 /**
- * Node.java - a representation of a generic node for use with
- * a LinkedList object, and could be "visualized" as:
- * 
+ * Node.java - a representation of a generic node for use with a LinkedList
+ * object, and could be "visualized" as:
+ *
  * <pre>
- * 
+ *
  *                      NODE
  *                +--------------+
  * previous {---- |              |
@@ -25,10 +22,11 @@ import java.io.Serializable;
  * @param <T>
  * @since Mar. 2, 2021,10:21:48 a.m.
  */
-public class Node <T> implements Serializable{
+public class Node<T> implements Serializable {
+
+   // Property (things about it, descriptors, information)
     
-        // Property (things about it, descriptors, information)
-    /** the generic data to store */
+    /** The generic data to store */
     public T data;    
     /** Self reference (link) to the next node in the "chain" */
     public Node next;
@@ -36,8 +34,7 @@ public class Node <T> implements Serializable{
     public Node previous;
     
     
-    
-    //Methods (things can do, actions, functions
+    // Methods (things can do, actions, functions)
     
     /**
      * Class constructor sets class properties 
@@ -78,20 +75,18 @@ public class Node <T> implements Serializable{
         this(null,null,null);
     }
     
-    
-    
     /**
-    * String representation of this object
-    *
-    * @return The object represented as a String
-    */
+     * String representation of this object
+     *
+     * @return The object represented as a String
+     */
     @Override
     public String toString() {
         if (data == null) return null;              // invalid data, output null
         return data.toString();                     // output data in node
     }
     
-    /**
+     /**
      * Deep comparison, determines if two objects are "equal" in this context
      *
      * @param object the object to compare to
@@ -101,21 +96,34 @@ public class Node <T> implements Serializable{
     public boolean equals(Object object) {
         if (this.data == null) return false;
         if (object    == null) return false;    // error checks
-        collections.Node that = (collections.Node)object;   // cast object into node
-        if (that.data == null || this.data == null) return false;
-        return this.data.equals(that.data);     // compare data in nodes
+        try{
+            Node that = (Node)object;               // cast object into node
+            if (that.data == null) return false;
+            return this.data.equals(that.data);     // compare data in nodes
+        }
+        catch(ClassCastException error){
+            return false;
+        }
     }
         
     /**
-    * a Deep clone, creates a duplicate object using new memory
-    *
-    * @return a "clone" of the object using new memory
-    */
+     * a Deep clone, creates a duplicate object using new memory
+     *
+     * @return a "clone" of the object using new memory
+     */
     @Override
     public Node clone() {
         return new Node(data,next,previous);
         // annonymous object
     }
     
+    /**
+     * Frees up all memory used by this object
+     */
+    @Override
+    public void finalize() {
+        data = null;
+        next = previous = null;
+        System.gc();                // runs the garbage collector in Java
+    }
 }
-

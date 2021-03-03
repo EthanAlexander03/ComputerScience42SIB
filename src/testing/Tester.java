@@ -28,7 +28,7 @@ public class Tester
 //        new ComputerScience40S();
 //        new ComputerScience42SIB();
 
-//            new CollectionsTest();
+        new CollectionsTest();
 
 //        Simulator.header("Mr. Wachs Computer Science testing complete!");
     }
