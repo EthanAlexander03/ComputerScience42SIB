@@ -184,7 +184,8 @@ public class LinkedList <T> implements Serializable {
         if (!inRange(index)) return false;
         if(data == null ) return false;
         Node current = getNode(index);
-        return current.data;
+        current.data = data;
+        return true;
                 
     }
     
